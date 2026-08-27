@@ -1,0 +1,1 @@
+{"root":["./src/global.d.ts","./src/main.tsx","./src/quest.config.ts","./src/components/actionbutton.tsx","./src/components/codeinput.tsx","./src/components/decodescreen.tsx","./src/components/questscreen.tsx","./src/components/snowfall.tsx","./src/components/startscreen.tsx","./src/lib/quest.ts"],"version":"5.9.3"}

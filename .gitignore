@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Production builds
+dist/
+build/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
+logs/
+.cache/
+tmp/
+temp/
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+
+# macOS / Windows files
+.DS_Store
+Thumbs.db
+
+# TypeScript incremental build files
+*.tsbuildinfo
+
+# Test and coverage output
+coverage/
+
+# Local editor files
+*.swp
+*.swo
+*~

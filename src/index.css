@@ -1,0 +1,575 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Mountains+of+Christmas:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 min-w-[320px] bg-[#f6d7bd] text-slate-900 antialiased;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  button,
+  input {
+    font: inherit;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.word-reveal {
+  animation: reveal 0.55s ease-out both;
+}
+
+@keyframes screen-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.screen-enter {
+  animation: screen-enter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.screen-enter > section {
+  animation: screen-enter 0.34s cubic-bezier(0.22, 1, 0.36, 1) 0.03s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-enter,
+  .screen-enter > section,
+  .word-reveal {
+    animation: none;
+  }
+}
+
+@keyframes snow {
+  from {
+    transform: translateY(-10vh);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.winter-page {
+  position: relative;
+  overflow: hidden;
+  background: #f6d7bd;
+}
+
+.winter-page::before,
+.winter-page::after {
+  display: none;
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  color: rgba(255, 255, 255, 0.58);
+  content: '❄  ·  ❄      ❄  ❄    ·   ❄      ❄  ·  ❄    ❄      ❄  ·  ❄';
+  letter-spacing: 1rem;
+  pointer-events: none;
+  animation: snow 16s linear infinite;
+}
+.snowfall {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.landing-shell > section,
+.winter-page > section {
+  position: relative;
+  z-index: 3;
+}
+
+.winter-page::before {
+  top: -10%;
+  font-size: 1rem;
+  animation-duration: 10s;
+}
+.winter-page::after {
+  top: -30%;
+  font-size: 0.7rem;
+  animation-duration: 13s;
+  animation-delay: -6s;
+}
+
+.winter-card {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.28);
+}
+.postcard-card {
+  position: relative;
+  overflow: hidden;
+  background-color: #f6d7bd;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 45%);
+}
+.postcard-card::before {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  display: block;
+  padding: 0.45rem 0.65rem;
+  color: #d61f3b;
+  content: 'NOËL  ✦';
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  transform: rotate(5deg);
+  box-shadow: inset 0 0 0 2px #d61f3b;
+}
+.postcard-card::after {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1rem;
+  width: 8rem;
+  height: 3rem;
+  border-top: 1px solid rgba(23, 32, 44, 0.18);
+  border-bottom: 1px solid rgba(23, 32, 44, 0.18);
+  content: '';
+  opacity: 0.7;
+}
+.postcard-card .quest-row,
+.postcard-card form,
+.postcard-card > .mt-6,
+.postcard-card > .mt-3,
+.postcard-card > button {
+  position: relative;
+  z-index: 1;
+}
+
+.winter-card::before {
+  position: absolute;
+  top: -1.25rem;
+  right: 0;
+  left: 0;
+  color: #f6c453;
+  content: '✦  ✦  ✦  ✦  ✦  ✦  ✦';
+  font-size: 0.75rem;
+  letter-spacing: 0.8rem;
+  text-align: center;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+
+.gold-button {
+  box-shadow: 0 8px 18px rgba(214, 158, 35, 0.3);
+}
+.gold-button:hover {
+  box-shadow: 0 10px 24px rgba(214, 158, 35, 0.45);
+  transform: translateY(-1px);
+}
+.code-pill {
+  border: 1px solid #f5d98c;
+  background: linear-gradient(135deg, #fff8df, #fff0b8);
+  color: #704d00;
+}
+
+.landing-shell {
+  background: #f6d7bd;
+}
+.landing-card {
+  overflow: hidden;
+  border: 1px solid rgba(79, 72, 58, 0.12);
+  background: #f7d7bd;
+  box-shadow: 0 22px 35px rgba(54, 48, 36, 0.28);
+}
+.landing-nav {
+  background: #f6d7bd;
+  color: #d61f3b;
+}
+.landing-hero {
+  background: radial-gradient(circle at 50% 35%, #f8e0c9 0, #f5d3b8 68%);
+}
+.landing-title {
+  color: #17202c;
+  font-family: 'Mountains of Christmas', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+}
+.landing-shell h1,
+.winter-page h1 {
+  font-family: 'Mountains of Christmas', Georgia, serif;
+}
+.landing-shell p,
+.winter-page p,
+.winter-page span,
+.winter-page button,
+.winter-page input {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.landing-red {
+  color: #d61f3b;
+}
+.landing-button {
+  background: #d61f3b;
+  color: #fff9e9;
+  box-shadow: 0 7px 0 #a9162d;
+}
+.landing-button:hover {
+  background: #bd1832;
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 #911126;
+}
+.tree {
+  position: relative;
+  width: 18rem;
+  height: 25rem;
+}
+.tree-layer {
+  position: absolute;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-right: 7rem solid transparent;
+  border-left: 7rem solid transparent;
+  border-bottom: 10rem solid #62605b;
+  filter: drop-shadow(0 8px 0 rgba(41, 43, 49, 0.12));
+}
+.tree-layer.one {
+  top: 0;
+  border-right-width: 4.7rem;
+  border-left-width: 4.7rem;
+  border-bottom-width: 7rem;
+}
+.tree-layer.two {
+  top: 4.2rem;
+}
+.tree-layer.three {
+  top: 9rem;
+  border-right-width: 8rem;
+  border-left-width: 8rem;
+  border-bottom-width: 11rem;
+}
+.tree-trunk {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 2.2rem;
+  height: 3rem;
+  transform: translateX(-50%);
+  background: #4b4642;
+}
+.tree-star {
+  position: absolute;
+  top: -1.3rem;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+  color: #d61f3b;
+  font-size: 2rem;
+}
+.tree-garland {
+  position: absolute;
+  z-index: 3;
+  width: 13rem;
+  height: 4rem;
+  border-bottom: 2px dotted #d8c46f;
+  border-radius: 50%;
+}
+.tree-garland.one {
+  top: 6rem;
+  left: 2.5rem;
+}
+.tree-garland.two {
+  top: 12rem;
+  left: 1.5rem;
+  width: 16rem;
+}
+.tree-garland.three {
+  top: 18rem;
+  left: 0.3rem;
+  width: 17.5rem;
+}
+.present {
+  position: absolute;
+  z-index: 5;
+  bottom: 0.2rem;
+  width: 4rem;
+  height: 4rem;
+  background: #d61f3b;
+  box-shadow: inset 1.7rem 0 rgba(255, 221, 166, 0.28);
+}
+.present::after {
+  position: absolute;
+  left: 1.55rem;
+  width: 0.7rem;
+  height: 100%;
+  background: #f1cc88;
+  content: '';
+}
+.present.left {
+  left: 1rem;
+}
+.present.right {
+  right: 1rem;
+  width: 5rem;
+  height: 3.5rem;
+  background: #edaa8c;
+}
+
+@media (max-width: 640px) {
+  .tree {
+    transform: scale(0.78);
+    transform-origin: bottom center;
+    margin: -2rem auto -3rem;
+  }
+  .landing-title {
+    font-size: 4rem;
+  }
+  .landing-hero {
+    position: relative;
+    padding-bottom: 6.5rem;
+  }
+  .landing-hero > div:first-child {
+    position: static;
+  }
+  .landing-button {
+    position: absolute;
+    right: 1.75rem;
+    bottom: 1.5rem;
+    left: 1.75rem;
+    width: calc(100% - 3.5rem);
+  }
+}
+
+/* Стиль экранов квеста в духе основной landing page. */
+.winter-page {
+  background: #f6d7bd;
+  color: #17202c;
+}
+.winter-page > section {
+  display: flex;
+  min-height: 78vh;
+  flex-direction: column;
+  border: 1px solid rgba(79, 72, 58, 0.12);
+  box-shadow: 0 18px 40px rgba(54, 48, 36, 0.18);
+}
+.winter-page form {
+  order: 5;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 2rem;
+}
+.winter-page form input {
+  width: 100%;
+  border: 2px solid #dfd4bd;
+  background: #fff;
+  padding: 1.1rem 1.25rem;
+  font-size: 1.25rem;
+}
+.winter-page form input:focus {
+  border-color: #d61f3b;
+  box-shadow: 0 0 0 3px rgba(214, 31, 59, 0.12);
+}
+.winter-page form button {
+  width: 100%;
+  background: #d61f3b;
+  padding: 1rem;
+  font-size: 1.15rem;
+}
+.winter-page form button:hover {
+  background: #bd1832;
+}
+.winter-page form .landing-button {
+  position: static;
+  display: block;
+  width: 100%;
+  align-self: stretch;
+  margin: 0;
+}
+.winter-page .text-slate-600,
+.winter-page .text-slate-500 {
+  color: #756b5d;
+}
+.winter-page .bg-slate-100 {
+  background: #fffdf7;
+}
+.winter-page .bg-amber-400 {
+  background: #d61f3b;
+  color: #fff9ed;
+}
+.winter-page .bg-amber-400:hover {
+  background: #bd1832;
+}
+.winter-page .border-slate-100 {
+  border-color: #eadfca;
+}
+.winter-page .winter-card::before {
+  display: none;
+}
+
+/* Бумажная фактура карточек квеста. */
+.winter-card {
+  border: 1px solid #eadfc9;
+  background-color: #fff9ed;
+  background-image:
+    linear-gradient(97deg, rgba(210, 187, 150, 0.08) 0.5px, transparent 0.5px),
+    linear-gradient(174deg, rgba(210, 187, 150, 0.06) 0.5px, transparent 0.5px),
+    linear-gradient(#fffaf0, #fff6e8);
+  background-size:
+    13px 17px,
+    19px 23px,
+    100% 100%;
+  box-shadow:
+    0 18px 0 rgba(171, 143, 99, 0.08),
+    0 24px 45px rgba(54, 48, 36, 0.2);
+}
+.winter-card .bg-slate-100,
+.winter-card .quest-row {
+  background-color: #fffdf7;
+  background-image: linear-gradient(103deg, rgba(210, 187, 150, 0.06) 0.5px, transparent 0.5px);
+  background-size: 17px 19px;
+}
+.postcard-card .quest-row {
+  margin-right: 0.15rem;
+  margin-left: 0.15rem;
+  box-shadow:
+    5px 6px 0 rgba(132, 105, 72, 0.14),
+    0 10px 18px rgba(132, 105, 72, 0.08);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+.postcard-card .quest-row:nth-child(odd) {
+  transform: rotate(-0.25deg);
+}
+.postcard-card .quest-row:nth-child(even) {
+  transform: rotate(0.2deg);
+}
+.postcard-card .quest-row:hover {
+  box-shadow:
+    7px 8px 0 rgba(132, 105, 72, 0.17),
+    0 13px 22px rgba(132, 105, 72, 0.1);
+  transform: translateY(-2px) rotate(0deg);
+}
+.winter-card .code-pill {
+  background: #fff4d7;
+  box-shadow: inset 0 0 0 1px rgba(214, 177, 85, 0.22);
+}
+
+/* Бумажные экраны без UI-скруглений. */
+.winter-page * {
+  border-radius: 0 !important;
+  border: 0 !important;
+}
+
+.winter-page .winter-card {
+  box-shadow:
+    6px 6px 0 rgba(171, 143, 99, 0.12),
+    12px 12px 0 rgba(171, 143, 99, 0.06),
+    0 24px 45px rgba(54, 48, 36, 0.18);
+}
+.winter-page .quest-row {
+  box-shadow: 3px 3px 0 rgba(171, 143, 99, 0.1);
+}
+.winter-page .quest-row {
+  background-color: #fff8ed;
+  color: #17202c;
+}
+.winter-page .quest-row:nth-child(even) {
+  background-color: #f0e5d3;
+}
+.winter-page .quest-row .text-slate-700 {
+  color: #17202c;
+}
+.winter-page form input {
+  background: #f4eadc;
+  color: #17202c;
+  box-shadow:
+    5px 6px 0 rgba(132, 105, 72, 0.14),
+    0 10px 18px rgba(132, 105, 72, 0.08);
+}
+.winter-page form input::placeholder {
+  color: #667276;
+}
+.winter-page form input:focus {
+  border: 0 !important;
+  box-shadow:
+    inset 0 0 0 2px #d61f3b,
+    3px 3px 0 rgba(171, 143, 99, 0.12);
+}
+
+/* Общий стиль внутренних экранов в той же тёплой рождественской палитре. */
+.landing-nav {
+  display: none;
+}
+.landing-card {
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  border: 0;
+  box-shadow: none;
+}
+.landing-hero {
+  min-height: 100vh;
+}
+.winter-page {
+  background: #f6d7bd;
+}
+.winter-card {
+  border-color: rgba(79, 72, 58, 0.12);
+  background: #fff9ed;
+  box-shadow: 0 20px 45px rgba(54, 48, 36, 0.2);
+}
+.winter-page .bg-amber-400,
+.winter-card .bg-amber-400 {
+  background-color: #d61f3b;
+  color: #fff9e9;
+}
+.winter-page .bg-amber-400:hover,
+.winter-card .bg-amber-400:hover {
+  background-color: #bd1832;
+}
+.winter-page .bg-slate-100 {
+  background-color: #fffdf7;
+  border: 1px solid #eadfca;
+}
+.winter-page > section > .bg-slate-100 {
+  background: #e3c8ad;
+  box-shadow: inset 0 1px 2px rgba(132, 105, 72, 0.12);
+}
+.winter-page > section > .bg-slate-100 > div {
+  background: #d61f3b;
+}
+.winter-page .text-slate-600,
+.winter-page .text-slate-500 {
+  color: #756b5d;
+}
+.winter-page .bg-slate-900 {
+  background-color: #17202c;
+}
+.winter-page .bg-amber-400 {
+  box-shadow: 0 7px 0 #a9162d;
+}
