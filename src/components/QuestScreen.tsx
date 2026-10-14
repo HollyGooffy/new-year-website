@@ -26,13 +26,13 @@ export function QuestScreen({
   onReset,
 }: QuestScreenProps) {
   return (
-    <main className="screen-enter winter-page landing-shell mx-auto min-h-screen max-w-xl px-5 py-10 sm:py-16">
+    <main className="screen-enter winter-page landing-shell mx-auto min-h-[100svh] max-w-xl px-3 py-6 sm:px-5 sm:py-12">
       <Snowfall />
-      <div className="mb-10 text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{questConfig.title}</h1>
-        <p className="mt-3 text-lg text-slate-600">{questConfig.questHint}</p>
+      <div className="mb-6 text-center sm:mb-10">
+        <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">{questConfig.title}</h1>
+        <p className="mt-2 text-base text-slate-600 sm:mt-3 sm:text-lg">{questConfig.questHint}</p>
       </div>
-      <section className="winter-card postcard-card rounded-3xl p-5 sm:p-8">
+      <section className="winter-card postcard-card rounded-3xl p-4 sm:p-8">
         <form onSubmit={onAdd} className="flex gap-2">
           <CodeInput
             value={input}
@@ -48,8 +48,10 @@ export function QuestScreen({
             Добавить
           </ActionButton>
         </form>
-        <div className="mt-6 flex items-center justify-between">
-          <span className="font-semibold text-lg">Найдено кодов: {codes.length} / 10</span>
+        <div className="mt-6 flex items-center justify-between gap-3">
+          <span className="text-base font-semibold sm:text-lg">
+            Найдено кодов: {codes.length} / 10
+          </span>
           <LockKeyhole className="text-amber-500" size={18} />
         </div>
         <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
@@ -64,11 +66,13 @@ export function QuestScreen({
             return (
               <div
                 key={entry.order}
-                className="quest-row flex items-center justify-between gap-4 rounded-xl bg-slate-100 px-4 py-3"
+                className="quest-row flex flex-col items-start justify-between gap-2 rounded-xl bg-slate-100 px-3 py-3 sm:flex-row sm:items-center sm:gap-4 sm:px-4"
               >
-                <div className="text-lg text-slate-700">{entry.question}</div>
+                <div className="text-base leading-snug text-slate-700 sm:text-lg">
+                  {entry.question}
+                </div>
                 <span
-                  className={`code-pill shrink-0 rounded-lg px-3 py-2 font-mono text-sm ${foundCode ? 'font-bold' : 'opacity-60'}`}
+                  className={`code-pill shrink-0 self-end rounded-lg px-3 py-2 font-mono text-sm sm:self-auto ${foundCode ? 'font-bold' : 'opacity-60'}`}
                 >
                   {foundCode || '—'}
                 </span>

@@ -4,6 +4,14 @@ import { createRoot } from 'react-dom/client'
 import { StartScreen } from './components/StartScreen'
 import { QuestScreen } from './components/QuestScreen'
 import { DecodeScreen } from './components/DecodeScreen'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from './components/ui/dialog'
 import { dictionary, readSavedCodes, STORAGE_KEY } from './lib/quest'
 import './index.css'
 
@@ -14,6 +22,7 @@ function App() {
   const [revealed, setRevealed] = useState<number[]>([])
   const [running, setRunning] = useState(false)
   const [screen, setScreen] = useState<'quest' | 'decode'>('quest')
+  const [dialogMessage, setDialogMessage] = useState<string | null>(null)
   const ordered = useMemo(
     () =>
       codes
@@ -29,8 +38,8 @@ function App() {
     event.preventDefault()
     const code = input.trim().toUpperCase()
     if (!code) return
-    if (codes.includes(code)) return alert('Такой код уже добавлен')
-    if (!dictionary[code]) return alert('Код не найден в словаре')
+    if (codes.includes(code)) return setDialogMessage('Такой код уже добавлен')
+    if (!dictionary[code]) return setDialogMessage('Код не найден в словаре')
     setCodes((current) => [...current, code])
     setInput('')
   }
@@ -63,15 +72,31 @@ function App() {
       />
     )
   return (
-    <QuestScreen
-      codes={codes}
-      input={input}
-      running={running}
-      onInput={setInput}
-      onAdd={addCode}
-      onNext={() => setScreen('decode')}
-      onReset={reset}
-    />
+    <>
+      <QuestScreen
+        codes={codes}
+        input={input}
+        running={running}
+        onInput={setInput}
+        onAdd={addCode}
+        onNext={() => setScreen('decode')}
+        onReset={reset}
+      />
+      <Dialog
+        open={dialogMessage !== null}
+        onOpenChange={(open) => !open && setDialogMessage(null)}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Не удалось добавить код</DialogTitle>
+            <DialogDescription>{dialogMessage}</DialogDescription>
+          </DialogHeader>
+          <DialogClose className="mt-6 w-full bg-[#d61f3b] px-4 py-3 text-lg font-bold text-[#fff9e9] shadow-[0_5px_0_#a9162d] transition hover:bg-[#bd1832] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d61f3b] focus-visible:ring-offset-2">
+            Понятно
+          </DialogClose>
+        </DialogContent>
+      </Dialog>
+    </>
   )
 }
 

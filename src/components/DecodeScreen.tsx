@@ -28,12 +28,14 @@ export function DecodeScreen({
     setTimeout(() => setDisplayedCodes(ordered.map((entry) => entry.code)), 700)
   }
   return (
-    <main className="screen-enter winter-page flex min-h-screen items-center justify-center px-5 py-10">
+    <main className="screen-enter winter-page flex min-h-[100svh] flex-col items-center justify-center gap-6 px-3 py-6 sm:px-5 sm:py-10">
       <Snowfall />
-      <section className="winter-card w-full max-w-3xl rounded-3xl p-6 text-center sm:p-10">
+      <section className="winter-card w-full max-w-3xl rounded-3xl p-5 text-center sm:p-10">
         <LockKeyhole className="mx-auto mb-4 text-amber-500" size={30} />
-        <h1 className="text-3xl font-bold sm:text-4xl">Все коды найдены</h1>
-        <p className="mt-3 text-slate-600">Посмотри на них в порядке, в котором ты их находила.</p>
+        <h1 className="text-2xl font-bold sm:text-4xl">Все коды найдены</h1>
+        <p className="mt-3 text-sm text-slate-600 sm:text-base">
+          Посмотри на них в порядке, в котором ты их находила.
+        </p>
         <div className="mt-8 flex w-full flex-wrap justify-center gap-2 overflow-hidden">
           {displayedCodes.map((code, index) => (
             <span
@@ -48,7 +50,7 @@ export function DecodeScreen({
           <ActionButton
             onClick={startDecode}
             disabled={running}
-            className="mt-8 px-8 disabled:opacity-60"
+            className="mt-8 w-full px-8 disabled:opacity-60 sm:w-auto"
           >
             🔓 Расшифровать
           </ActionButton>
@@ -57,10 +59,7 @@ export function DecodeScreen({
           <p className="mt-8 text-2xl font-bold">{ordered.map((entry) => entry.word).join(' ')}</p>
         )}
       </section>
-      <button
-        onClick={onReset}
-        className="absolute bottom-6 flex items-center gap-2 text-sm text-slate-500"
-      >
+      <button onClick={onReset} className="flex items-center gap-2 text-sm text-slate-500">
         <RotateCcw size={15} /> Сбросить прогресс
       </button>
     </main>
